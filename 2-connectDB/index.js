@@ -1,7 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const connection = require("./db/db");
-const UserModel = require("./module/User.module");
+const User = require("./models/user.models");
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.post("/users/create", async (req, res) => {
     return;
   }
 
-  const new_user = new UserModel({
+  const new_user = new User({
     username,
     email,
     password,
