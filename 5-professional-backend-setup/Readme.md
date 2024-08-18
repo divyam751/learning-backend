@@ -20,6 +20,53 @@
 
 - Install nodemon in dev dependencies
 
-- ```javascript
+- ```cmd
   npm i -D nodemon
+  ```
+
+<br>
+<hr>
+
+### Add more folders
+
+```cmd
+mkdir db controllers models middlewares routes utils
+```
+
+- db
+- controllers
+- models
+- middlewares
+- routes
+- utils
+
+### Install and setup <b> Prettier </b> in dev dependencies
+
+```cmd
+npm i -D prettier
+```
+
+- Create a file <b>.prettierrc</b> and add code
+
+  ```javascript
+  {
+      "singleQuote": false,
+      "bracketSpacing": true,
+      "tabWidth": 2,
+      "trailingComma": "es5",
+      "semi": true
+  }
+  ```
+
+- Create a file <b>.prettierignore</b> and add code
+
+  ```text
+  /.vscode
+  /node_modules
+  ./dist
+
+
+  *.env
+  .env
+  .env.*
   ```
