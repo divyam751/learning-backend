@@ -1,6 +1,6 @@
 # Production ready code (Backend)
 
-### File and folder Structure
+### Node project initialization
 
 - npm init -y
 
