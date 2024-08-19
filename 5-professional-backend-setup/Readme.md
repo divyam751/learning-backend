@@ -27,7 +27,7 @@
 <br>
 <hr>
 
-### Add more folders
+### Add more folders in src
 
 ```cmd
 mkdir db controllers models middlewares routes utils
@@ -69,4 +69,75 @@ npm i -D prettier
   *.env
   .env
   .env.*
+  ```
+
+### Update .env file
+
+```.env
+
+PORT=3000
+MONGODB_URI=mongodb+srv://<user_name>:<password>@cluster0.8vg7y.mongodb.net
+ -> remove "/"from the end
+```
+
+### Update files inside src folder
+
+```JavaScript
+// constants.js
+
+export const DB_NAME = "database_name";
+```
+
+### Install Packages
+
+```cmd
+npm i mongoose dotenv express
+```
+
+<br>
+
+## Write code for connecting DB
+
+```javascript
+// db->index.js->
+
+import mongoose from "mongoose";
+import { DB_NAME } from "../constants.js";
+
+const connectDB = async () => {
+  try {
+    const connectionInstance = await mongoose.connect(
+      `${process.env.MONGODB_URI}/${DB_NAME}`
+    );
+    console.log(
+      `\n MongoDB connected !! DB HOST: ${connectionInstance.connection.host}`
+    );
+  } catch (error) {
+    console.error("MongoDB connection error :", error);
+    process.exit(1);
+  }
+};
+
+export default connectDB;
+```
+
+### Configure dotenv
+
+- src/index.js file
+
+  ```javascript
+  import dotenv from "dotenv";
+  import connectDB from "../db/index.js";
+
+  dotenv.config({
+    path: "./env",
+  });
+  connectDB();
+  ```
+
+- update package.json file
+  ```javascript
+    "scripts": {
+      "dev": "nodemon -r dotenv/config --experimental-json-modules  src/index.js"
+    },
   ```
